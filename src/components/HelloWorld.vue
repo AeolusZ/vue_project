@@ -1,6 +1,10 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>从state获取的count数据 {{this.$store.state.count}}</h1>
+    <h1>从getters获取的count数据 {{this.$store.getters.getCount}}</h1>
+    <p>count的值：{{this.$store.state.count}}</p>
+    <button @click="addOne">加1</button>
+    <button @click="subOne">减1</button>
   </div>
 </template>
 
@@ -9,7 +13,18 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: '好好学习，天天向上！'
+     
+    }
+  },
+  mounted(){
+    const self = this
+  },
+  methods: {
+    addOne: function() {
+      this.$store.dispatch('addOne')
+    },
+    subOne(){
+      this.$store.dispatch('subOne', 10)
     }
   }
 }
