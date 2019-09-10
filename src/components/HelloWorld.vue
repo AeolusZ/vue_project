@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    Welcome to My System !
     <h1>从state获取的count数据 {{this.$store.state.count}}</h1>
     <h1>从getters获取的count数据 {{this.$store.getters.getCount}}</h1>
     <p>count的值：{{this.$store.state.count}}</p>
