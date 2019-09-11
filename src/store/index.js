@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
     state: {
+        url: 'http://172.20.10.10:8081/',
         count: 1,
         menuTree: []
     },
@@ -22,7 +23,7 @@ const store = new Vuex.Store({
             state.count = state.count - n;
         },
         getMenuTree(state) {
-            axios.get('http://172.20.10.10:8081/data.json')
+            axios.get(state.url + 'data.json')
             .then(res => {
                 if (res.status === 200) {
                     state.menuTree = res.data.list

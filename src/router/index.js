@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import StduManage1 from '@/components/studentManage/stduManage1'
+import VuexStore from '@/components/vuex/vuexStore'
 
 Vue.use(Router)
 
@@ -13,9 +13,9 @@ export default new Router({
       component: HelloWorld
     },
     {
-      path: '/studentManage1',
-      name: 'StduManage1',
-      component: StduManage1
+      path: '/vuexStore',
+      name: 'VuexStore',
+      component: VuexStore
     } 
   ]
 })

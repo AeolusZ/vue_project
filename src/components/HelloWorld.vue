@@ -1,11 +1,6 @@
 <template>
   <div class="hello">
-    Welcome to My System !
-    <h1>从state获取的count数据 {{this.$store.state.count}}</h1>
-    <h1>从getters获取的count数据 {{this.$store.getters.getCount}}</h1>
-    <p>count的值：{{this.$store.state.count}}</p>
-    <button @click="addOne">加1</button>
-    <button @click="subOne">减1</button>
+    <h1>Welcome to My System !</h1>
   </div>
 </template>
 
@@ -33,18 +28,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.hello {
+  text-align: center;
+}
 h1, h2 {
+  font-size: 64px;
   font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
 }
 </style>

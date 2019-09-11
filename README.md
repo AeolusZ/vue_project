@@ -23,5 +23,6 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+1. 执行 npm install 安装所有依赖
+2. 进入 json 文件夹目录下执行 http-server --cors --port 8081 将模拟后台数据服务器启动 
+3. 返回根目录执行 npm start启动项目
