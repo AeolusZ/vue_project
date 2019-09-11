@@ -23,7 +23,7 @@ const store = new Vuex.Store({
             state.count = state.count - n;
         },
         getMenuTree(state) {
-            axios.get(state.url + 'data.json')
+            axios.get(state.url + 'menu.json')
             .then(res => {
                 if (res.status === 200) {
                     state.menuTree = res.data.list
