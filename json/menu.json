@@ -14,12 +14,12 @@
         },
         {
             "index": 2,
-            "name": "项目管理",
+            "name": "vue",
             "children": [
                 {
                     "index": 3,
-                    "name": "项目管理1",
-                    "url": "/projectManage1"
+                    "name": "vue生命周期",
+                    "url": "/lifeCycle"
                 },
                 {
                     "index": 4,
