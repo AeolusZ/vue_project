@@ -27,6 +27,27 @@
                     "url": "/projectManage2"
                 }
             ]
+        },
+        {
+            "index": 3,
+            "name": "设计模式",
+            "children": [
+                {
+                    "index": 5,
+                    "name": "简单工厂模式",
+                    "url": "/baseFactory"
+                },
+                {
+                    "index": 6,
+                    "name": "工厂方法模式",
+                    "url": "/factoryFunc"
+                },
+                {
+                    "index": 7,
+                    "name": "抽象工厂模式",
+                    "url": "/abstractFactory"
+                }
+            ]
         }
     ]
 }
