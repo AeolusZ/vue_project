@@ -6,6 +6,7 @@ import LifeCycle from '@/components/vue/lifeCycle'
 import BaseFactory from '@/components/designPattern/baseFactory'
 import AbstractFactory from '@/components/designPattern/abstractFactory'
 import FactoryFunc from '@/components/designPattern/factoryFunc'
+import FormData from '@/components/frontBase/formData'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/factoryFunc',
       name: 'FactoryFunc',
       component: FactoryFunc
+    },
+    {
+      path: '/formData',
+      name: 'FormData',
+      component: FormData
     }
   ]
 })

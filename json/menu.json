@@ -2,6 +2,17 @@
 {
     "list": [
         {
+            "index": 0,
+            "name": "前端基础",
+            "children": [
+                {
+                    "index": 1,
+                    "name": "formData",
+                    "url": "/formData"
+                }
+            ]
+        },
+        {
             "index": 1,
             "name": "vuex",
             "children": [
