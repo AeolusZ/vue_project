@@ -1,11 +1,12 @@
 <template>
     <div>
         FormData
-        <submit-form :list="formList" :model="formModel"></submit-form>
+        <submit-form :list="formList" :model="formModel" @on-change="changeModel" @on-submit="submitModel"></submit-form>
     </div>
 </template>
 <script>
 import Form from '../public/form'
+import axios from 'axios'
 export default {
     name: 'FormData',
     components: {
@@ -44,9 +45,10 @@ export default {
                 },
                 {id: 3, name: '出生年月', type: 'singleDatePicker', value: 'birth', width: '250px'},
                 {id: 4, name: '照片', type: 'upload', value: 'photo'},
+                {id: 5, name: '提交', type: 'button'},
             ],
             formModel: {
-                name: '',
+                name: '汪苏泷',
                 sex: '',
                 constellation: '',
                 birth: '',
@@ -54,8 +56,28 @@ export default {
             }
         }
     },
+    mounted(){
+        console.log(this.formModel)
+        console.log(this.formModel.name)
+        console.log(JSON.parse(JSON.stringify(this.formModel)))
+    },
     methods: {
-
+        changeModel(param){
+           
+        },
+        submitModel(param){
+            var formdata = new FormData()
+            var list = {}
+            for (var item in this.formModel) {
+                if (item !== 'photo') {
+                    list[item] = this.formModel[item]
+                }
+            }
+            console.log(list)
+            formdata.append('file', this.formModel.photo)
+            formdata.append('data', list)
+            axios.post('http://localhost:8080', formdata, {'Content-Type': 'multipart/form-data'})
+        }
     }
 }
 </script>

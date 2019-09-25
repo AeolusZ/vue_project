@@ -1,16 +1,22 @@
 <template>
-    <el-form>
-        <el-form-item v-for="item in list" :key="item.id" :label="item.name" label-width="100px">
+    <el-form :model="model" :ref="model">
+        <el-form-item 
+          v-for="item in list" 
+          :key="item.id" 
+          :label="item.type === 'button' ? '' : item.name"
+          :rules="item.rules"
+          :prop="item.rules ? item.value : ''" 
+          label-width="100px">
             <!-- 输入框 -->
-            <el-input v-if="item.type === 'input'" :placeholder="'请输入'.concat(item.name)" v-model="model[item.value]" :style="{'width': item.width}"></el-input>
+            <el-input v-if="item.type === 'input'" :placeholder="'请输入'.concat(item.name)" v-model="model[item.value]" @change="handleChange" :style="{'width': item.width}"></el-input>
             <!-- 单选框 -->
-            <el-radio-group v-if="item.type === 'radio'" v-model="model[item.value]" :style="{'width': item.width}">
-                <el-radio v-for="{id, value, name} in item.options" :key="id" label="value">{{name}}</el-radio>
+            <el-radio-group v-if="item.type === 'radio'" v-model="model[item.value]" :style="{'width': item.width}" @change="handleChange">
+                <el-radio v-for="{id, value, name} in item.options" :key="id" :label="value">{{name}}</el-radio>
             </el-radio-group>
             <!-- 日期时间 -->
-            <el-date-picker v-if="item.type === 'singleDatePicker'" :placeholder="'请选择'.concat(item.name)" v-model="model[item.value]" :style="{'width': item.width}" type="datetime"></el-date-picker>
+            <el-date-picker v-if="item.type === 'singleDatePicker'" :placeholder="'请选择'.concat(item.name)" v-model="model[item.value]" @change="handleChange" :style="{'width': item.width}" type="datetime"></el-date-picker>
             <!-- 级联选择（单选） -->
-            <el-cascader v-if="item.type === 'singleCascader'" :placeholder="'请选择'.concat(item.name)" v-model="model[item.value]" :options="item.options" :style="{'width': item.width}"></el-cascader>
+            <el-cascader v-if="item.type === 'singleCascader'" :placeholder="'请选择'.concat(item.name)" v-model="model[item.value]" :options="item.options" @change="handleChange" :style="{'width': item.width}"></el-cascader>
             <!-- 上传文件 -->
             <el-upload
                 v-if="item.type === 'upload'"
@@ -19,10 +25,12 @@
                 v-model="model[item.value]"
                 :show-file-list="false"
                 :before-upload="beforeAvatarUpload"
-                :http-request="handleUpload">
+                :http-request="handleChange">
                 <img v-if="imageUrl" :src="imageUrl" class="avatar">
                 <i v-else class="el-icon-plus avatar-uploader-icon"></i>
             </el-upload>
+            <!-- 按钮 -->
+            <el-button v-if="item.type === 'button'" @click="handleSubmit(model)">{{item.name}}</el-button>
         </el-form-item>
     </el-form>
 </template>
@@ -48,9 +56,23 @@ export default {
             }
             return isJPG && isLt2M;
         },
-        handleUpload(param){
-            console.log(param)
-            this.imageUrl = URL.createObjectURL(param.file);
+        handleChange(param){
+            if (param.file) {
+                this.imageUrl = URL.createObjectURL(param.file);
+                console.log(this.imageUrl, param.file)
+                this.model.photo = param.file
+            }
+            this.$emit('on-change', this.model)
+        },
+        handleSubmit(model){
+            this.$refs[model].validate((valid) => {
+              if (valid) {
+                this.$emit('on-submit', this.model)
+              } else {
+                console.log('error submit!!');
+                return false;
+              }
+          });
         }
     }
 }

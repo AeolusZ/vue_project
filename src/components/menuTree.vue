@@ -14,7 +14,7 @@ export default {
     name: 'MenuTree',
     props: ['menu'],
     mounted(){
-        console.log(this.menu)
+        // console.log(this.menu)
     } 
 }
 </script>
